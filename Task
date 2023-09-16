@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Task Form</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend&display=swap" rel="stylesheet">
+    <style>
+        body, input, button, div {
+            font-family: 'Lexend', sans-serif;
+        }
+        .bold-task {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Centered Container for Input Boxes and Submit Button -->
+    <div style="text-align: center; border: 1px solid black; margin: 20px; padding: 10px; box-shadow: 2px 2px 5px grey; width: 300px; margin-left: auto; margin-right: auto;">
+        <input type="text" id="firstInput" placeholder="Name" style="margin: 5px;">
+        <br>
+        <input type="text" id="secondInput" placeholder="Task" style="margin: 5px;">
+        <br>
+        <button onclick="submitInput()" style="background-color: lightblue; border: none; padding: 10px 20px; cursor: pointer;">Submit</button>
+    </div>
+
+    <!-- Centered Container for Display Area -->
+    <div id="displayArea" style="text-align: center; border: 1px solid black; margin: auto; width: 20%; padding: 10px; box-shadow: 2px 2px 5px grey;">
+    </div>
+
+    <script>
+        var taskCounter = 1; // Task counter for labeling
+
+        // Function to handle submission
+        function submitInput() {
+            // Get values from input boxes
+            var firstValue = document.getElementById("firstInput").value;
+            var secondValue = document.getElementById("secondInput").value;
+
+            // Check if either of the input boxes is empty
+            if(firstValue === "" || secondValue === "") {
+                alert("Both fields should be not empty.");
+                return;
+            }
+
+            // Create a div element to hold both values
+            var newDiv = document.createElement("div");
+            newDiv.style.marginBottom = "10px";  // Space for each task
+            
+            // Task label
+            var taskLabel = document.createElement("div");
+            taskLabel.className = "bold-task"; // Add the bold style
+            taskLabel.innerText = "Task " + taskCounter;
+            newDiv.appendChild(taskLabel);
+
+            // Name label and value
+            var nameLabel = document.createElement("div");
+            nameLabel.innerHTML = "Name: " + firstValue;
+            newDiv.appendChild(nameLabel);
+
+            // Task label and value
+            var taskContent = document.createElement("div");
+            taskContent.innerHTML = "Task: " + secondValue;
+            newDiv.appendChild(taskContent);
+
+            // Append the new entry to the display area
+            document.getElementById("displayArea").appendChild(newDiv);
+
+            taskCounter++; // Increment the task counter
+        }
+    </script>
+
+</body>
+</html>
